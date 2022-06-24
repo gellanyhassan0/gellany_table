@@ -68,18 +68,26 @@ class gellany_table():
 
               def main(self):
 
-                         try :
+                         
                               self.driver()
                               if isinstance(self.element, str) == True:
-                                       self.container()
-                                       driver.quit()
-                              elif isinstance(self.search, str) == True and isinstance(self.key, str) == True:
-                                       self.send()
-                                       driver.quit()
-                        
-                         except:
+                                           try :
+                                                  self.container()
+                                           except:
+                                                  print("error in container")
+                                                  #driver.quit()
+                              if isinstance(self.search, str) == True:
+                                           try :
+                                                  self.send()
+                                                  
+                                           except:
+                                                  print("error in send")
+                                                  #driver.quit()
+
                               driver.quit() 
+                                     
                             
                          
 
 gellany_table(url = "https://www.thesun.co.uk/sport/football/" , element = '//div[@class="teaser__copy-container"]', search = "s", key = "goals").main()
+
