@@ -18,7 +18,7 @@ html = driver.page_source
 #print(html)
 
 containers = driver.find_elements(by='xpath', value='//div[@class="teaser__copy-container"]')
-print(containers)
+#print(containers)
 titles = []
 subtitles = []
 links = []
