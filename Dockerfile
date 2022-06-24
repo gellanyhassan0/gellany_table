@@ -1,5 +1,5 @@
 #Deriving the latest base image
-FROM browserless/chrome
+FROM python:latest
 
 LABEL Maintainer="Elgilany Hassan"
 
@@ -20,6 +20,8 @@ RUN pip install -r ./requirements.txt
 RUN wget https://raw.githubusercontent.com/gellanyhassan0/gellany_selenium_chromedriver/main/gellany_selenium_chromedriver.sh 
 RUN chmod +x ./gellany_selenium_chromedriver.sh
 RUN ./gellany_selenium_chromedriver.sh
+RUN wget https://raw.githubusercontent.com/gellanyhassan0/gellany_table/main/gellany_table.py -O gellany_table.py 
+
 #CMD [ "python3", "./manage.py", runserver", "0.0.0.0:8000"]
 
 CMD python3 -c "import signal; signal.pause()"
