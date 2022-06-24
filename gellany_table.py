@@ -9,12 +9,13 @@ import pandas as pd
 
 class gellany_table():
 
-              def __init__(self, url = None , key = None , element = None , search = None):
+              def __init__(self, url = None , key = None , element = None , search = None , table = None):
                    
                          self.url = url
                          self.key = key
                          self.element = element
                          self.search = search
+                         self.table = table
 
 
 
@@ -54,6 +55,17 @@ class gellany_table():
                          df_headlines.to_csv('headline.csv')
                          print(df_headlines.head())
 
+              def pd_csv(self):
+                      
+                         df_csv = pd.read_csv(self.url)
+                         print(df_csv)
+
+              def pd_html(self):
+             
+                         df_html = pd.read_html(self.url)
+                         print(df_html[self.table].head())
+                         
+
               def send(self):
 
                          # Sending key in search box by search element
@@ -70,12 +82,30 @@ class gellany_table():
 
                          
                               self.driver()
+
                               if isinstance(self.element, str) == True:
                                            try :
                                                   self.container()
                                            except:
                                                   print("error in container")
                                                   #driver.quit()
+
+                              if (self.url[-4:]) == '.csv':
+                                           try :
+                                                  self.pd_csv()
+                                           except:
+                                                  print("error in panda csv")
+                                                  #driver.quit()
+
+                              if isinstance(self.table, int) == True or table == 1:
+                                           try :
+                                                  self.pd_html()
+                                           except:
+                                                  print("error in panda html")
+                                                  #driver.quit()
+
+
+
                               if isinstance(self.search, str) == True:
                                            try :
                                                   self.send()
@@ -89,5 +119,7 @@ class gellany_table():
                             
                          
 
-gellany_table(url = "https://www.thesun.co.uk/sport/football/" , element = '//div[@class="teaser__copy-container"]', search = "s", key = "goals").main()
+#gellany_table(url = "https://www.thesun.co.uk/sport/football/" , element = '//div[@class="teaser__copy-container"]', search = "s", key = "goals").main()
+#gellany_table(url = "https://www.football-data.co.uk/mmz4281/2122/E0.csv").main()
+gellany_table(url = "https://en.wikipedia.org/wiki/List_of_The_Simpsons_episodes_(seasons_1%E2%80%9320)", table = 1).main()
 
