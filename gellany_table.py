@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 import time
 import pandas as pd
-
+import argparse
 
 
 class gellany_table():
@@ -63,7 +63,7 @@ class gellany_table():
               def pd_html(self):
              
                          df_html = pd.read_html(self.url)
-                         print(df_html[self.table].head())
+                         print(df_html[int(self.table)].head())
                          
 
               def send(self):
@@ -97,7 +97,7 @@ class gellany_table():
                                                   print("error in panda csv")
                                                   #driver.quit()
 
-                              if isinstance(self.table, int) == True or table == 1:
+                              if isinstance(self.table, str) == True or self.table == "1":
                                            try :
                                                   self.pd_html()
                                            except:
@@ -116,10 +116,17 @@ class gellany_table():
 
                               driver.quit() 
                                      
-                            
+my_parser = argparse.ArgumentParser()
+my_parser.add_argument('--url')
+my_parser.add_argument('--element')
+my_parser.add_argument('--search')
+my_parser.add_argument('--key')
+my_parser.add_argument('--table')
+args = my_parser.parse_args()                           
                          
 
 #gellany_table(url = "https://www.thesun.co.uk/sport/football/" , element = '//div[@class="teaser__copy-container"]', search = "s", key = "goals").main()
 #gellany_table(url = "https://www.football-data.co.uk/mmz4281/2122/E0.csv").main()
-gellany_table(url = "https://en.wikipedia.org/wiki/List_of_The_Simpsons_episodes_(seasons_1%E2%80%9320)", table = 1).main()
+#gellany_table(url = "https://en.wikipedia.org/wiki/List_of_The_Simpsons_episodes_(seasons_1%E2%80%9320)", table = 1).main()
 
+gellany_table(url = args.url , element = args.element, search = args.search, key = args.key, table = args.table).main()
