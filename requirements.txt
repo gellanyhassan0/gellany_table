@@ -1,0 +1,4 @@
+pandas==1.4.2
+selenium==4.2.0
+service-identity==21.1.0
+webdriver-manager==3.7.0
