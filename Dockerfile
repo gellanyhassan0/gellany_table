@@ -14,6 +14,8 @@ RUN apt-get install python3 -y
 RUN apt-get install python3-pip -y
 RUN pip install --upgrade pip 
 
+RUN apt-get install -y libglib2.0-0 libnss3 libgconf-2-4 libfontconfig1
+
 RUN git clone https://github.com/gellanyhassan0/gellany_table.git ./
 
 RUN pip install -r ./requirements.txt
@@ -21,6 +23,9 @@ RUN wget https://raw.githubusercontent.com/gellanyhassan0/gellany_selenium_chrom
 RUN chmod +x ./gellany_selenium_chromedriver.sh
 RUN ./gellany_selenium_chromedriver.sh
 RUN wget https://raw.githubusercontent.com/gellanyhassan0/gellany_table/main/gellany_table.py -O gellany_table.py 
+
+
+
 
 #CMD [ "python3", "./manage.py", runserver", "0.0.0.0:8000"]
 
