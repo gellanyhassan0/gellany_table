@@ -98,7 +98,7 @@ class gellany_table():
                                                   print("error in panda csv")
                                                   #driver.quit()
 
-                              if isinstance(self.table, str) == True or self.table == "1":
+                              if isinstance(int(self.table), int) == True :
                                            try :
                                                   self.pd_html()
                                            except:
